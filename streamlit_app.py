@@ -1,12 +1,10 @@
 import streamlit as st
 import speech_recognition as sr
 from pydub import AudioSegment
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig,pipeline
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig
 from googletrans import Translator
-from transformers import logging
+#from transformers import logging
 
-logger = logging.getLogger("transformers") #get logger from transformers
-logger.setLevel(logging.ERROR)
 
 
 MODEL = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
@@ -21,7 +19,12 @@ model.save_pretrained(MODEL)
 tokenizer.save_pretrained(MODEL)
 
 
-cyberbullying_classifier = pipeline("text-classification", model="s-nlp/roberta_toxicity_classifier")
+cyberbullying_classifier = "s-nlp/roberta_toxicity_classifier"
+
+model = AutoModelForSequenceClassification.from_pretrained(cyberbullying_classifier)
+tokenizer = AutoTokenizer.from_pretrained(cyberbullying_classifier)
+config = AutoConfig.from_pretrained(cyberbullying_classifier)
+
 translator = Translator()  # For language translation
 
 
