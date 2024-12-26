@@ -1,4 +1,4 @@
-from emotion import predict_sentiment, ROBERTA_SUPPORTED_LANGUAGES
+from streamlit_app import predict_sentiment, ROBERTA_SUPPORTED_LANGUAGES
 from translate import translate_text
 import csv
 
