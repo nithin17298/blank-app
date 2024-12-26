@@ -4,7 +4,9 @@ from pydub import AudioSegment
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig,pipeline
 from googletrans import Translator
 from transformers import logging
-logging.set_verbosity_error()
+
+logger = logging.getLogger("transformers") #get logger from transformers
+logger.setLevel(logging.ERROR)
 
 
 MODEL = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
