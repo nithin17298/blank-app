@@ -81,7 +81,7 @@ if input_option == "Text":
                   label = "bullying"
                 if label =="positive":
                   label= "not_bullying"
-                st.write("Detection") 
+                st.write("Detection:") 
                 st.write(label)
                 #cyberbullying_label= detect_cyberbullying(text_input)
                 #st.write(f"Cyberbullying Detection: {cyberbullying_label}")
