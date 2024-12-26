@@ -5,6 +5,7 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification, Auto
 #from googletrans import Translator
 #from transformers import logging
 
+st.set_page_config(page_title="Your App Title", page_icon=":rocket:", layout="wide", initial_sidebar_state="auto")
 
 
 MODEL = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
