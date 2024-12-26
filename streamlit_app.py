@@ -64,7 +64,7 @@ def predict_sentiment(text: str) -> str:
       #  return "UNKNOWN"
 
 
-st.title("Audio to Text Converter")
+st.title("Cyber Bullying Detection")
 
 input_option = st.radio("Select input type:", ("Text", "Audio"))
 
@@ -73,9 +73,14 @@ if input_option == "Text":
         if st.button("Transcribe"):
             if text_input:
                 st.write("Transcribed Text:")
-                st.write(text_input)
-                st.write("Sentiment:") 
-                st.write(predict_sentiment(text_input))
+                st.write(text_input) 
+                label=predict_sentiment(text_input)
+                st.write("Sentiment:")
+                st.write(label)
+                if label == "negative":
+                  label = "bullying"
+                st.write("Detection") 
+                st.write(label)
                 #cyberbullying_label= detect_cyberbullying(text_input)
                 #st.write(f"Cyberbullying Detection: {cyberbullying_label}")
 # Display the entered text directly
