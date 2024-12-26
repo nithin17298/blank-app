@@ -1,7 +1,8 @@
 import streamlit as st
 import speech_recognition as sr
 from pydub import AudioSegment
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig,pipeline
+from googletrans import Translator
 
 
 MODEL = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
@@ -14,6 +15,10 @@ config = AutoConfig.from_pretrained(MODEL)
 #/ save the model locally
 model.save_pretrained(MODEL)
 tokenizer.save_pretrained(MODEL)
+
+
+cyberbullying_classifier = pipeline("text-classification", model="s-nlp/roberta_toxicity_classifier")
+translator = Translator()  # For language translation
 
 
 # Preprocess text (username and link placeholders)
@@ -33,6 +38,25 @@ def predict_sentiment(text: str) -> str:
     sentiment = config.id2label[index_of_sentiment]
     return sentiment
 
+def detect_cyberbullying(text):
+    """Detects cyberbullying, translating to English if needed."""
+    try:
+        detected_lang = translator.detect(text).lang
+        if detected_lang != 'en':
+            translated = translator.translate(text, dest='en').text
+        else:
+            translated = text
+
+        result = cyberbullying_classifier(translated)[0]
+        label = result['label']
+        if label == "toxic":
+            label = "cyberbullying"
+        return label
+    except Exception as e:
+        print(f"Error during classification: {e}")
+        return "UNKNOWN"
+
+
 st.title("Audio to Text Converter")
 
 input_option = st.radio("Select input type:", ("Text", "Audio"))
@@ -44,7 +68,10 @@ if input_option == "Text":
                 st.write("Transcribed Text:")
                 st.write(text_input)
                 st.write("Sentiment:") 
-                st.write(predict_sentiment(text_input)) # Display the entered text directly
+                st.write(predict_sentiment(text_input))
+                cyberbullying_label= detect_cyberbullying(text_input)
+                st.write(f"Cyberbullying Detection: {cyberbullying_label}")
+# Display the entered text directly
             else:
                 st.warning("Please enter some text.")
 
