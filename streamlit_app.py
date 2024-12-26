@@ -91,7 +91,7 @@ if input_option == "Text":
 
 elif input_option == "Audio":
 
- uploaded_file = st.file_uploader("Upload an audio file", type=["wav", "mp3"])
+ uploaded_file = st.file_uploader("Upload an audio file", type=["wav"])
 
  if uploaded_file is not None:
     # Display audio player
