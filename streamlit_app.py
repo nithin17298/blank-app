@@ -3,6 +3,8 @@ import speech_recognition as sr
 from pydub import AudioSegment
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig,pipeline
 from googletrans import Translator
+from transformers import logging
+logging.set_verbosity_error()
 
 
 MODEL = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
