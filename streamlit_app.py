@@ -117,8 +117,16 @@ elif input_option == "Audio":
         st.success("Transcription successful!")
         st.write("Transcribed Text:")
         st.write(text)
+        label=predict_sentiment(text)
         st.write("Sentiment:") 
-        st.write(predict_sentiment(text)) # Display the entered text directly
+        st.write(label)
+        if label == "negative":
+          label = "bullying"
+        if label =="positive":
+          label= "not_bullying"
+        st.write("Detection:") 
+        st.write(label)
+                 # Display the entered text directly
 
 
     except sr.UnknownValueError:
