@@ -3,6 +3,7 @@ import speech_recognition as sr
 from pydub import AudioSegment
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig
 from cyber import detect_cyberbullying
+import text2emotion as te
 #from googletrans import Translator
 #from transformers import logging
 
@@ -79,6 +80,10 @@ if input_option == "Text":
                 st.write(detect_cyberbullying(text_input))
                 st.write("Sentiment:") 
                 st.write(label)
+                emotions = te.get_emotion(text)
+                dominant_emotion = max(emotions, key=emotions.get)
+                st.write("Emotion:")
+                st.write(dominant_emotion)
         
                 #cyberbullying_label= detect_cyberbullying(text_input)
                 #st.write(f"Cyberbullying Detection: {cyberbullying_label}")
@@ -119,6 +124,10 @@ elif input_option == "Audio":
         st.write(detect_cyberbullying(text))
         st.write("Sentiment:") 
         st.write(label)
+        emotions = te.get_emotion(text)
+        dominant_emotion = max(emotions, key=emotions.get)
+        st.write("Emotion:")
+        st.write(dominant_emotion)
         
                  # Display the entered text directly
 
