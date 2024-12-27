@@ -2,6 +2,7 @@ import streamlit as st
 import speech_recognition as sr
 from pydub import AudioSegment
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig
+from cyber import detect_cyberbullying
 #from googletrans import Translator
 #from transformers import logging
 
@@ -76,12 +77,8 @@ if input_option == "Text":
                 label=predict_sentiment(text_input)
                 st.write("Sentiment:")
                 st.write(label)
-                if label == "negative":
-                  label = "bullying"
-                if label =="positive":
-                  label= "not_bullying"
                 st.write("Detection:") 
-                st.write(label)
+                st.write(detect_cyberbullying(text_input)
                 #cyberbullying_label= detect_cyberbullying(text_input)
                 #st.write(f"Cyberbullying Detection: {cyberbullying_label}")
 # Display the entered text directly
