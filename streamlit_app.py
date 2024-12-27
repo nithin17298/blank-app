@@ -78,7 +78,7 @@ if input_option == "Text":
                 st.write("Sentiment:")
                 st.write(label)
                 st.write("Detection:") 
-                st.write(detect_cyberbullying(text_input)
+                st.write(detect_cyberbullying(text_input))
                 #cyberbullying_label= detect_cyberbullying(text_input)
                 #st.write(f"Cyberbullying Detection: {cyberbullying_label}")
 # Display the entered text directly
