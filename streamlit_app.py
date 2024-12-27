@@ -75,10 +75,11 @@ if input_option == "Text":
                 st.write("Transcribed Text:")
                 st.write(text_input) 
                 label=predict_sentiment(text_input)
-                st.write("Sentiment:")
-                st.write(label)
                 st.write("Detection:") 
                 st.write(detect_cyberbullying(text_input))
+                st.write("Sentiment:") 
+                st.write(label)
+        
                 #cyberbullying_label= detect_cyberbullying(text_input)
                 #st.write(f"Cyberbullying Detection: {cyberbullying_label}")
 # Display the entered text directly
@@ -114,14 +115,11 @@ elif input_option == "Audio":
         st.write("Transcribed Text:")
         st.write(text)
         label=predict_sentiment(text)
+        st.write("Detection:") 
+        st.write(detect_cyberbullying(text))
         st.write("Sentiment:") 
         st.write(label)
-        if label == "negative":
-          label = "bullying"
-        if label =="positive":
-          label= "not_bullying"
-        st.write("Detection:") 
-        st.write(label)
+        
                  # Display the entered text directly
 
 
