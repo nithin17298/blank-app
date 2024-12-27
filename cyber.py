@@ -22,9 +22,7 @@ def detect_cyberbullying(text):
         result = classifier(translated)[0]
 
         label = result['label']
-        if label == "toxic":
-            label = "cyberbullying"
-
+        
         return label # Return the label with the highest score
     except Exception as e:
         print(f"Error during classification: {e}")
