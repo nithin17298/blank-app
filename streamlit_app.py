@@ -80,7 +80,7 @@ if input_option == "Text":
                 st.write(detect_cyberbullying(text_input))
                 st.write("Sentiment:") 
                 st.write(label)
-                emotions = te.get_emotion(text)
+                emotions = te.get_emotion(text_input)
                 dominant_emotion = max(emotions, key=emotions.get)
                 st.write("Emotion:")
                 st.write(dominant_emotion)
