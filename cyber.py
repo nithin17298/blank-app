@@ -7,16 +7,26 @@ classifier = pipeline("text-classification", model="s-nlp/roberta_toxicity_class
 # Initialize the Google Translate translator
 translator = Translator()
 
+def preprocess(text):
+    new_text = []
+    for t in text.split(" "):
+        t = '' if t.startswith('@') and len(t) > 1 else t
+        t = '' if t.startswith('http') else t
+        new_text.append(t)
+    return " ".join(new_text)
+
+
 def detect_cyberbullying(text):
     try:
         # Detect the language of the input text
-        detected_lang = translator.detect(text).lang
+        ptext=preprocess(text)
+        detected_lang = translator.detect(ptext).lang
 
         # Translate to English if not already English
         if detected_lang != 'en':
-            translated = translator.translate(text, dest='en').text
+            translated = translator.translate(ptext, dest='en').text
         else:
-            translated = text
+            translated = ptext
 
         # Perform cyberbullying detection on the translated text
         result = classifier(translated)[0]
