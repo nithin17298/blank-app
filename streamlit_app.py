@@ -3,7 +3,7 @@ import speech_recognition as sr
 import re
 from pydub import AudioSegment
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig
-from translate import translate_text
+#from translate import translate_text
 #from cyber import detect_cyberbullying
 #from googletrans import Translator
 #from transformers import logging
@@ -82,7 +82,6 @@ if input_option == "Text":
         if st.button("Transcribe"):
             if text_input:
                 st.write("Transcribed Text:")
-                text_input=translate_text(text_input)
                 #st.write(preprocess(text_input)) 
                 label=predict_sentiment(text_input)
                 st.write("Detection:") 
