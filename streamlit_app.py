@@ -79,7 +79,7 @@ if input_option == "Text":
         if st.button("Transcribe"):
             if text_input:
                 st.write("Transcribed Text:")
-                st.write(text_input) 
+                st.write(preprocess(text_input)) 
                 label=predict_sentiment(text_input)
                 st.write("Detection:") 
                 if label=="negative":
