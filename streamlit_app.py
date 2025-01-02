@@ -40,7 +40,7 @@ def preprocess(text):
     clean_text= " ".join(new_text)
     clean_text = re.sub(r'[^\w\s]', '', clean_text)
     clean_text = re.sub(r'[_\W]+', ' ', clean_text) 
-    clean_text = re.sub(r'\s+', ' ', clean_text).strip()
+    #clean_text = re.sub(r'\s+', ' ', clean_text).strip()
     if not clean_text or clean_text.isspace():
         clean_text = "[EMPTY]" 
     return clean_text
