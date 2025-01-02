@@ -137,7 +137,7 @@ elif input_option == "Audio":
             st.write("not_toxic")
         else:
             st.write("neutral")       
-        st.write(detect_cyberbullying(text))
+        #st.write(detect_cyberbullying(text))
         st.write("Sentiment:") 
         st.write(label)
         
