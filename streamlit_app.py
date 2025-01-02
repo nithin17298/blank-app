@@ -47,7 +47,7 @@ def preprocess(text):
 
 def predict_sentiment(text: str) -> str:
     processed_text = text
-    encoded_input = tokenizer(processed_text, return_tensors='pt')
+    #encoded_input = tokenizer(processed_text, return_tensors='pt')
     output = model(**encoded_input)
     index_of_sentiment = output.logits.argmax().item()
     sentiment = config.id2label[index_of_sentiment]
