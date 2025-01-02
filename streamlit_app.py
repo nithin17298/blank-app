@@ -130,7 +130,13 @@ elif input_option == "Audio":
         st.write("Transcribed Text:")
         st.write(text)
         label=predict_sentiment(text)
-        st.write("Detection:") 
+        st.write("Detection:")
+        if label=="negative":
+            st.write("toxic")
+        elif label=="positive":
+            st.write("not_toxic")
+        else:
+            st.write("neutral")       
         st.write(detect_cyberbullying(text))
         st.write("Sentiment:") 
         st.write(label)
