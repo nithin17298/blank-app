@@ -77,6 +77,7 @@ input_option = st.radio("Select input type:", ("Text", "Audio"))
 
 if input_option == "Text":
         text_input = st.text_area("Enter text:")
+        st.markdown("*Don't enter only symbols.*")
         if st.button("Transcribe"):
             if text_input:
                 st.write("Transcribed Text:")
