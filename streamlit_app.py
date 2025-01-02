@@ -84,6 +84,10 @@ if input_option == "Text":
                 st.write("Detection:") 
                 if label=="negative":
                     st.write("toxic")
+                elif label=="positive":
+                    st.write("not_toxic")
+                else:
+                    st.write("neutral")
                 st.write("Sentiment:") 
                 st.write(label)
                 
