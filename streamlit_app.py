@@ -2,7 +2,7 @@ import streamlit as st
 import speech_recognition as sr
 from pydub import AudioSegment
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig
-from cyber import detect_cyberbullying
+#from cyber import detect_cyberbullying
 #from googletrans import Translator
 #from transformers import logging
 
@@ -32,8 +32,8 @@ tokenizer.save_pretrained(MODEL)
 def preprocess(text):
     new_text = []
     for t in text.split(" "):
-        t = '@user' if t.startswith('@') and len(t) > 1 else t
-        t = 'http' if t.startswith('http') else t
+        t = '' if t.startswith('@') and len(t) > 1 else t
+        t = '' if t.startswith('http') else t
         new_text.append(t)
     return " ".join(new_text)
 
@@ -76,7 +76,8 @@ if input_option == "Text":
                 st.write(text_input) 
                 label=predict_sentiment(text_input)
                 st.write("Detection:") 
-                st.write(detect_cyberbullying(text_input))
+                if label=="negative":
+                    st.write("toxic")
                 st.write("Sentiment:") 
                 st.write(label)
                 
