@@ -80,6 +80,7 @@ if input_option == "Text":
         text_input = st.text_area("Enter text:")
         st.markdown("*Don't enter only symbols.*")
         if st.button("Transcribe"):
+            text_input=translate_text(text_input)
             if text_input:
                 st.write("Transcribed Text:")
                 st.write(preprocess(text_input)) 
