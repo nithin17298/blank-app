@@ -46,7 +46,7 @@ def preprocess(text):
     return clean_text
 
 def predict_sentiment(text: str) -> str:
-    processed_text = preprocess(text)
+    processed_text = text
     encoded_input = tokenizer(processed_text, return_tensors='pt')
     output = model(**encoded_input)
     index_of_sentiment = output.logits.argmax().item()
