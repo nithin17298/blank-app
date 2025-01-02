@@ -37,17 +37,17 @@ def preprocess(text):
         t = '' if t.startswith('@') and len(t) > 1 else t
         t = '' if t.startswith('http') else t
         new_text.append(t)
-    clean_text= " ".join(new_text)
-    clean_text = re.sub(r'[^\w\s]', '', clean_text)
-    clean_text = re.sub(r'[_\W]+', ' ', clean_text) 
+    #clean_text= " ".join(new_text)
+    #clean_text = re.sub(r'[^\w\s]', '', clean_text)
+    #clean_text = re.sub(r'[_\W]+', ' ', clean_text) 
     #clean_text = re.sub(r'\s+', ' ', clean_text).strip()
-    if not clean_text or clean_text.isspace():
-        clean_text = "[EMPTY]" 
-    return clean_text
+    #if not clean_text or clean_text.isspace():
+        #clean_text = "[EMPTY]" 
+    return " ".join(new_text)
 
 def predict_sentiment(text: str) -> str:
-    processed_text = text
-    #encoded_input = tokenizer(processed_text, return_tensors='pt')
+    processed_text = preprocess(text)
+    encoded_input = tokenizer(processed_text, return_tensors='pt')
     output = model(**encoded_input)
     index_of_sentiment = output.logits.argmax().item()
     sentiment = config.id2label[index_of_sentiment]
