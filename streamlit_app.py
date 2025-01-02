@@ -35,7 +35,9 @@ def preprocess(text):
         t = '' if t.startswith('@') and len(t) > 1 else t
         t = '' if t.startswith('http') else t
         new_text.append(t)
-    return " ".join(new_text)
+    clean_text= " ".join(new_text)
+    clean_text = re.sub(r'[^\w\s]', '', clean_text)
+    return clean_text
 
 def predict_sentiment(text: str) -> str:
     processed_text = preprocess(text)
