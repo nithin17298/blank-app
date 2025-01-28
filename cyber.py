@@ -2,7 +2,7 @@ from transformers import pipeline
 from googletrans import Translator
 
 # Load the pre-trained model.
-classifier = pipeline("text-classification", model="s-nlp/roberta_toxicity_classifier")
+classifier = pipeline("text-classification", model="robertacyberbullying")
 
 # Initialize the Google Translate translator
 translator = Translator()
